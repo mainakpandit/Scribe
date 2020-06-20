@@ -1,0 +1,18 @@
+<div class="card text-blank mt-3">
+    <div class="card-body">
+        <div class="card-title">
+            <h2>{{ postData.title }}</h2>
+        </div>
+        <div class="card-text">
+            {{ postData.content.content[0].content[0].text.substring(0, 50) }}......<a class="card-link" routerLink="/view/{{ post.id }}">Read More</a>
+        </div>
+    </div>
+
+    <div class="card-footer text-muted">
+        Posted on {{ postData.created.toDate() | date: 'MMM dd, yyyy' }}
+        <button type="button" class="btn btn-outline-danger card-link btn-sm float-right" *ngIf="user && user.uid == postData.onwer" (click)="delete()">Delete</button>
+    </div>
+    <a class="card-footer text-muted" *ngIf="(user && postData.onwer != user.uid) || !user" routerLink="/profile/{{ postData.onwer }}">
+        View Writer's Profile
+    </a>
+</div>
